@@ -1,0 +1,21 @@
+# Nunca subir credenciales ni datos locales a EAS
+.env
+.env.*
+!.env.example
+api/
+.local/
+docs/
+specs/
+.claude/
+.agents/
+.codex/
+.specify/
+.expo/
+.impeccable/
+node_modules/
+dist/
+web-build/
+credentials.json
+*.apk
+*.keystore
+*.jks

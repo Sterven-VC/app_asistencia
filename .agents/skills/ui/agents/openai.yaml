@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI"
+  short_description: "Guías de interfaz para Asistencia TMT"
+  default_prompt: "Usa $ui para trabajar en la interfaz de Asistencia TMT."

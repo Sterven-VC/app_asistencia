@@ -1,0 +1,10 @@
+# Impeccable · Señalética de obra
+
+- **Dirección:** la app se lee como la señalética de una obra o mina. Cada pantalla tiene un letrero: un campo plano a sangre con filete blanco interior que lleva el mensaje. En Marcar, el letrero entero es el botón (naranja para actuar, grafito mientras ubica y guarda, ámbar si quedó en el teléfono, verde al terminar) y llega hasta la celda activa de la barra.
+- **Por qué:** al sol, con guantes y con prisa, un campo enorme al alcance del pulgar se acierta sin mirar. La señal de seguridad ya es un código que el personal conoce: el estado se lee por la forma (círculo = actuar, triángulo = advertencia, cuadrado = condición, círculo cruzado = rechazo), así el color nunca va solo.
+- **Marca:** se conserva el logo sobre blanco, el naranja `#DB3A14` solo para la acción y los colores de estado de DESIGN.md. Se suma el grafito `#2E3338` como banda superior y barra, y una cinta de seguridad que aparece solo cuando no hay señal.
+- **Tipografía:** Barlow (de letreros viales, en caja baja y alta, que se lee mejor que mayúsculas) para todo, y Barlow Condensed solo en pestañas y en la barra de seis destinos. Rampa fija de tamaños, ninguno menor a 14 px.
+- **Método:** el sorteo de impeccable asignó la dirección 4 de siete candidatas propias (sello de recepción, tablero de fichas de mina, cajetín de plano, señalética, cuaderno de obra, tareo, chaleco reflectivo). Seed `seed:924741d723bcbdaf`.
+- **Sin consultar (subagente, sin ronda de decisión):** se construyó la dirección asignada sin presentar alternativas; no se escribió surface brief, DESIGN.md propio ni revisión final con subagente para no salir de esta carpeta.
+- **Decisiones propias:** rechazar y desactivar piden confirmación en una hoja con el motivo; las opciones de tipo y rol van en filas a todo el ancho para que ningún rótulo se corte a 320 px; Proyecto se elige en una hoja, no con un select nativo; "Salir" en Marcar es discreto porque no es la acción del día.
+- **Sin verificar:** no se probó en un Android real ni en emulador, solo en la galería web a 375 y 320 px. La barra con dos destinos no se vio porque la galería siempre pasa seis.
