@@ -1,13 +1,40 @@
-// Clúster propio del proyecto, con el PostgreSQL 17 ya instalado.
+// Clúster propio del proyecto, con el PostgreSQL ya instalado en la PC.
 // Escucha solo en 127.0.0.1 y no toca los servidores de los puertos 5432 y 5433.
 import { execFileSync, spawn } from 'node:child_process';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const raiz = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const bin = 'C:/Program Files/PostgreSQL/17/bin';
 const datos = path.join(raiz, '.local/postgres');
+
+/**
+ * Usa PG_BIN si está definida. Si no, busca en la carpeta de instalación de Windows
+ * la versión que creó el clúster o, en una PC nueva, la más reciente.
+ */
+function buscarBin() {
+  if (process.env.PG_BIN) return process.env.PG_BIN;
+  const base = 'C:/Program Files/PostgreSQL';
+  const instaladas = existsSync(base)
+    ? readdirSync(base)
+        .filter((v) => /^\d+$/.test(v) && existsSync(path.join(base, v, 'bin', 'initdb.exe')))
+        .sort((a, b) => Number(b) - Number(a))
+    : [];
+  const archivoVersion = path.join(datos, 'PG_VERSION');
+  const versionDatos = existsSync(archivoVersion) ? readFileSync(archivoVersion, 'utf8').trim() : null;
+  const elegida = versionDatos ? instaladas.find((v) => v === versionDatos) : instaladas[0];
+  if (!elegida) {
+    console.error(
+      versionDatos
+        ? `La base local se creó con PostgreSQL ${versionDatos} y esa versión no está instalada.`
+        : 'No se encontró PostgreSQL en C:/Program Files/PostgreSQL. Instálalo o define PG_BIN.',
+    );
+    process.exit(1);
+  }
+  return path.join(base, elegida, 'bin');
+}
+
+const bin = buscarBin();
 const registro = path.join(raiz, '.local/postgres.log');
 const PUERTO = '5434';
 

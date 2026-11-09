@@ -1,10 +1,44 @@
-.env
-.env.*
-!.env.example
+# Dependencias: se reinstalan con npm install
 node_modules/
+
+# Expo y compilaciones: se generan solas
 .expo/
 dist/
 web-build/
-.local/
+expo-env.d.ts
+/android/
+/ios/
+.kotlin/
+*.apk
+*.aab
+.metro-health-check*
+*.tsbuildinfo
+
+# Credenciales y firmas: nunca se suben
+.env
+.env.*
+!.env.example
 *.keystore
 *.jks
+*.p8
+*.p12
+*.key
+*.pem
+*.mobileprovision
+credentials.json
+
+# Base de datos local, respaldos y registros
+.local/
+*.dump
+*.log
+npm-debug.*
+coverage/
+
+# Cachés y ajustes personales de las herramientas de agentes
+.claude/settings.local.json
+.impeccable/hook.cache.json
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+*.orig.*
